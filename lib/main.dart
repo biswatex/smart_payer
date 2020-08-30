@@ -6,6 +6,7 @@ import 'package:smart_payer/pages/login.dart';
 import 'package:smart_payer/pages/loginhome.dart';
 
 void main() => runApp(MaterialApp(
+  debugShowCheckedModeBanner: false,
   theme: ThemeData(
     primaryColor: Colors.redAccent,
     primaryColorDark: Colors.red,

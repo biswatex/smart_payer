@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -12,9 +13,15 @@ class ReportDash extends StatefulWidget {
 }
 
 class _ReportDashState extends State<ReportDash> {
-
-  Material MyItems(IconData icon, String title, Color color)
-  {
+  List report = [
+    [Icons.phone_android,"Recharge Report",Colors.lightGreen],
+    [Icons.trending_up,"Statement Report",Colors.orange],
+    [Icons.cached,"Refund Report",Colors.pink],
+    [Icons.payment,"Utility Report",Colors.deepOrange],
+    [Icons.toys,"Water Bill Report",Colors.orangeAccent],
+    [Icons.battery_charging_full,"Electricity Report",Colors.red]
+  ];
+  Widget MyItems(IconData icon, String title, Color color){
     return Material(
       color: Colors.blue[900],
       elevation: 14,
@@ -22,7 +29,6 @@ class _ReportDashState extends State<ReportDash> {
       borderRadius: BorderRadius.circular(24),
       child: InkWell(
         onTap: () async {
-
           if(title == "Electricity Report") {
             var route = new MaterialPageRoute(
               builder: (BuildContext context) =>
@@ -55,27 +61,28 @@ class _ReportDashState extends State<ReportDash> {
             }
         },
         child: Center(
-          child: Padding(
-              padding: const EdgeInsets.all(4),
+          child: Container(
+            width:MediaQuery.of(context).size.width*0.4,
+            padding: EdgeInsets.all(4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(title,style:GoogleFonts.openSans(
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        width:MediaQuery.of(context).size.width*0.3,
+                        child: AutoSizeText(title,
+                          textAlign: TextAlign.center,
+                          maxLines:2,
+                          style:GoogleFonts.openSans(
                             textStyle: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
-                              fontSize: 15,
-
                             )
                           ),),
                       ),
-                    ),
                     Material(
                       color: color,
                       borderRadius: BorderRadius.circular(24),
@@ -84,7 +91,7 @@ class _ReportDashState extends State<ReportDash> {
                         child: Icon(
                           icon,
                           color: Colors.white,
-                          size: 30,
+                          size: 20,
                         ),
                       ),
                     )
@@ -101,7 +108,21 @@ class _ReportDashState extends State<ReportDash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StaggeredGridView.count(
+      body: Container(
+          child: GridView.count(
+            crossAxisCount:2,
+            children: List.generate(report.length,(index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: MyItems(report[index][0],report[index][1],report[index][2]),
+                ),
+              );
+            }
+            ),
+          )
+      ),
+      /*StaggeredGridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 20.0,
         mainAxisSpacing: 18.0,
@@ -122,7 +143,7 @@ class _ReportDashState extends State<ReportDash> {
           StaggeredTile.extent(1, 130),
           StaggeredTile.extent(1, 130),
         ],
-      ),
+      ),*/
     );
   }
 }

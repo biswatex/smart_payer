@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_dialog/flutter_progress_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,7 +64,7 @@ class UtilityBill extends StatelessWidget with NavigationStates {
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 90),
-                  child: Text("My Utility Bills", style: GoogleFonts.abel(
+                  child: AutoSizeText("My Utility Bills", style: GoogleFonts.abel(
                       textStyle: TextStyle(
                         color: Colors.red[400],
                         fontSize: 50,

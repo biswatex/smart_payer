@@ -15,7 +15,6 @@ class _LoadingState extends State<Loading> {
 
   @override
   Future<void> initState() {
-    // TODO: implement initState
     super.initState();
     open();
   }
